@@ -60,6 +60,7 @@ class GenusController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        /** @var Genus $genus */
         $genus = $em->getRepository('AppBundle:Genus')->findOneBy(['name' => $genusName]);
 
         if (!$genus) {
@@ -78,8 +79,13 @@ class GenusController extends Controller
         //            $cache->save($key, $funFact);
         //        }
 
+        $recentNotes = $genus->getNotes()->filter(function (GenusNote $note) {
+            return $note->getCreatedAt() > new \DateTime('-3 months');
+        });
+
         return $this->render('genus/show.html.twig', [
-            'genus' => $genus
+            'genus' => $genus,
+            'recentNoteCount' => count($recentNotes)
         ]);
     }
 
