@@ -5,11 +5,13 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-class GenusController {
+class GenusController
+{
     /**
-     * @Route("/genus")
+     * @Route("/genus/{genusName}")
      */
-    public function showAction() {
-        return new Response('Under the Sea!');
+    public function showAction($genusName)
+    {
+        return new Response('The genus: ' . $genusName);
     }
 }
