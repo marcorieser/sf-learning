@@ -15,9 +15,7 @@ class GenusAdminController extends Controller
      */
     public function indexAction()
     {
-        $genuses = $this->getDoctrine()
-            ->getRepository('AppBundle:Genus')
-            ->findAll();
+        $genuses = $this->getDoctrine()->getRepository('AppBundle:Genus')->findAll();
 
         return $this->render('admin/genus/list.html.twig', array(
             'genuses' => $genuses
