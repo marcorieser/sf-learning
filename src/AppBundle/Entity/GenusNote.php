@@ -25,7 +25,7 @@ class GenusNote
     /**
      * @ORM\Column(type="string")
      */
-    private $userAvatarFileName;
+    private $userAvatarFilename;
 
     /**
      * @ORM\Column(type="text")
@@ -70,17 +70,17 @@ class GenusNote
     /**
      * @return mixed
      */
-    public function getUserAvatarFileName()
+    public function getUserAvatarFilename()
     {
-        return $this->userAvatarFileName;
+        return $this->userAvatarFilename;
     }
 
     /**
-     * @param mixed $userAvatarFileName
+     * @param mixed $userAvatarFilename
      */
-    public function setUserAvatarFileName($userAvatarFileName)
+    public function setUserAvatarFilename($userAvatarFilename)
     {
-        $this->userAvatarFileName = $userAvatarFileName;
+        $this->userAvatarFilename = $userAvatarFilename;
     }
 
     /**
