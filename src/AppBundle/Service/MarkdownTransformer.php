@@ -2,19 +2,40 @@
 
 namespace AppBundle\Service;
 
+use Doctrine\Common\Cache\Cache;
 use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 
 class MarkdownTransformer
 {
+    /**
+     * @var MarkdownParserInterface
+     */
     private $markdownParser;
 
-    public function __construct(MarkdownParserInterface $markdownParser)
+    /**
+     * @var Cache
+     */
+    private $cache;
+
+    public function __construct(MarkdownParserInterface $markdownParser, Cache $cache)
     {
         $this->markdownParser = $markdownParser;
+        $this->cache = $cache;
     }
 
     public function parse($str)
     {
-        return $this->markdownParser->transformMarkdown($str);
+        $cache = $this->cache;
+
+        $key = md5($str);
+
+        if ($cache->contains($key)) {
+            return $cache->fetch($key);
+        }
+        sleep(1);
+        $str = $this->markdownParser->transformMarkdown($str);
+        $cache->save($key, $str);
+
+        return $str;
     }
 }
