@@ -26,7 +26,9 @@
     <script>
         (function ($) {
             $(function () {
-               $('.js-datepicker').datepicker();
+               $('.js-datepicker').datepicker({
+                   format: 'yyyy-mm-dd'
+               });
             });
         }(jQuery));
     </script>
