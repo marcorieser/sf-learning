@@ -1,44 +1,12 @@
-{% extends 'base.html.twig' %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
-{% endblock %}
+{% extends ':admin/genus:formLayout.html.twig' %}
 
 {% block body %}
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
                 <h1>New Genus</h1>
-
-                {{ form_start(genusForm) }}
-                {{ form_row(genusForm.name) }}
-                {{ form_row(genusForm.subFamily) }}
-                {{ form_row(genusForm.speciesCount, {
-                    'label': 'Number of Species'
-                }) }}
-                {{ form_row(genusForm.funFact) }}
-                {{ form_row(genusForm.isPublished) }}
-                {{ form_row(genusForm.firstDiscoveredAt) }}
-
-                <button class="btn btn-primary" formnovalidate>Save</button>
-
-                {{ form_end(genusForm) }}
+                {{ include('admin/genus/_form.html.twig') }}
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
-    <script>
-        (function ($) {
-            $(function () {
-                $('.js-datepicker').datepicker({
-                    format: 'yyyy-mm-dd'
-                });
-            });
-        }(jQuery));
-    </script>
 {% endblock %}
